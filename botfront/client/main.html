@@ -1,15 +1,63 @@
 <head>
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#ffc40d">
-    <meta name="theme-color" content="#ffffff">
-  <title>Botfront</title>
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#ffc40d">
+  <meta name="theme-color" content="#ffffff">
+<title>Jamk</title>
+<style>
+  .rw-widget-embedded .rw-messages-container {
+    height: 88% !important;
+  }
+  .project-sidebar .ui.header.logo { background: white; margin-left: 0px !important; }
+  .setup .ui.header { opacity: 1 !important; color: transparent !important; }
+
+  .project-sidebar .ui.inverted.menu,
+  .project-sidebar,
+  .project-menu {
+    background-color: #0D004C !important;
+  }
+
+  .text-danger {
+    color: red;
+  }
+
+  .text-success {
+    color: green
+  }
+
+  /* Jamk Logo */
+  .setup .ui.header:after { content: ""; background-image: url("https://static.neuvo.ai/logos/partners/jamk-rehabilitation.png"); display: block; background-repeat: no-repeat; background-size: contain; width: 350px; height: 100px; max-width: 100%; }
+
+  /* Conversation background color */
+  .rw-messages-container {
+    background-color: #EEEEEE !important;
+  }
+
+  /* User message */
+  .rw-conversation-container .rw-client {
+    color: #FFFFFF !important;
+    /* background-color: red !important; */
+  }
+
+  /* Assistant message */
+  .rw-conversation-container .rw-response {
+    /* color: #00B49D !important; */
+    color: #FFFFFF !important;
+    background-color: #0D004C !important;
+  }
+
+  /* Bot typing bubble and dots */
+  .rw-conversation-container .rw-response .rw-dot {
+    background: #fff !important;
+    opacity: 1 !important
+  }
+</style>
 </head>
 
 <body>
-  <div id="render-target"></div>
+<div id="render-target"></div>
 </body>

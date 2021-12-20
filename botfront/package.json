@@ -155,11 +155,6 @@
     "start-server-and-test": "^1.12.0",
     "webpack": "^4.28.4"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "standard-version": {
     "scripts": {
       "postcommit": "../scripts/post_commit.sh"

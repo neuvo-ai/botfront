@@ -34,7 +34,7 @@ import IntentField from '../form_fields/IntentField';
 import { ProjectContext } from '../../layouts/context';
 import InfoField from '../utils/InfoField';
 
-const ColorField = React.lazy(() => import('../form_fields/ColorField'));
+// const ColorField = React.lazy(() => import('../form_fields/ColorField'));
 class ChatWidgetForm extends React.Component {
     constructor(props) {
         super(props);
@@ -260,7 +260,7 @@ class ChatWidgetForm extends React.Component {
                     <ErrorsField />
                     <Divider />
 
-                    <Header as='h3'>Colors</Header>
+                    {/* <Header as='h3'>Colors</Header>
                     <ColorField label='Main webchat color' name='mainColor' />
                     <ColorField
                         label='Conversation background color'
@@ -280,7 +280,7 @@ class ChatWidgetForm extends React.Component {
                         name='assistBackgoundColor'
                     />
 
-                    <Divider />
+                    <Divider /> */}
 
                     <Accordion>
                         <Accordion.Title

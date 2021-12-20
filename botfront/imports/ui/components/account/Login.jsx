@@ -106,9 +106,9 @@ class LoginComponent extends React.Component {
                             )}
                             <SubmitField value='LOGIN' className='black large basic fluid' disabled={reCatpchaSiteKey && !reCaptcha} data-cy='login-button' />
                             <br />
-                            <Link style={{ color: '#000' }} to='/forgot-password'>
+                            {/* <Link style={{ color: '#000' }} to='/forgot-password'>
                                 Forgot your password?
-                            </Link>
+                            </Link> */}
                         </AutoForm>
                     </Segment>
                 )}

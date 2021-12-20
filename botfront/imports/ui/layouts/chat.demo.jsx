@@ -34,9 +34,12 @@ const ChatDemo = (props) => {
     const [logos, setLogos] = useState({});
 
     const handleChangeLanguage = (lang) => {
-        window.localStorage.removeItem('chat_session');
+        if(queryParams.private) {
+            // This is private chat, clear local storage
+            window.localStorage.removeItem('chat_session');
+        }
         setLanguage(lang);
-        router.replace({ pathname, query: { lang, env: selectedEnv } });
+        router.replace({ pathname, query: { lang, env: selectedEnv, private: queryParams.private} });
         setUpdateKey(new Date());
     };
 
@@ -47,9 +50,17 @@ const ChatDemo = (props) => {
         setUpdateKey(Date.now());
     };
 
-    const handleRestart = () => handleChangeLanguage(language);
+    const handleRestart = () => {
+        window.localStorage.removeItem('chat_session');
+        window.sessionStorage.removeItem('chat_session');
+        router.replace({ pathname, query: { lang: queryParams.lang, env: selectedEnv, private: queryParams.private} });
+        setUpdateKey(new Date());
+    }
 
     useEffect(() => {
+        const base = document.createElement("base");
+        base.setAttribute("target", "_blank");
+        document.head.appendChild(base);
         setLoading(true);
         Meteor.call('project.getChatProps', projectId, selectedEnv, (err, res) => {
             if (err) setError(err.message);
@@ -93,14 +104,14 @@ const ChatDemo = (props) => {
             <ResponsiveAlternants
                 cutoff={500}
                 as='span'
-                style={{ marginTop: '10px' }}
+                style={{ marginTop: '10px', flex: '0 0 250px' }}
                 className='logo pale-grey'
             >
                 {logos.logoUrl ? (
-                    <Image src={logos.logoUrl} centered className='custom-logo' />
-                ) : <>Botfront.</>}
+                    <Image src={logos.logoUrl}  className='custom-logo' />
+                ) : <></>}
                 {logos.smallLogoUrl ? (
-                    <Image src={logos.smallLogoUrl} centered className='small-custom-logo' />
+                    <Image src={logos.smallLogoUrl}  className='small-custom-logo' />
                 ) : <>B.</>}
             </ResponsiveAlternants>
             <ResponsiveAlternants cutoff={1000} as='span' className='large grey'>
@@ -110,7 +121,7 @@ const ChatDemo = (props) => {
                 </>
                 <b>{widgetProps.projectName}</b>
             </ResponsiveAlternants>
-            <ResponsiveAlternants cutoff={769}>
+            <ResponsiveAlternants cutoff={769} style={{ flex: '0 0 250px' }}>
                 <Button.Group className='transparent grey'>
                     <Button basic icon='redo' content='Restart' onClick={handleRestart} />
                     <Dropdown
@@ -161,6 +172,10 @@ const ChatDemo = (props) => {
     const render = () => (
         <>
             {renderTopMenu()}
+            <div>
+                <strong>Incognito mode: <span className={queryParams.private ? "text-success" : "text-danger"}>{queryParams.private ? "On" : "Off"}</span></strong>
+                 <p><small> {queryParams.private ? "Chat data will be cleared when browser window is closed" : "Notice, incognito mode is off! Click restart, to clear chat data" }</small></p>
+            </div>
             <div className='widget-container'>
                 <Widget
                     interval={0}
@@ -171,6 +186,7 @@ const ChatDemo = (props) => {
                     hideWhenNotConnected={false}
                     customData={{ language }}
                     embedded
+                    params={{ storage: queryParams.private ? "session" : "local" }}
                     customMessageDelay={() => 0}
                     key={updateKey}
                 />
